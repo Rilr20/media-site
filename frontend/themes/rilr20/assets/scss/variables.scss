@@ -1,0 +1,35 @@
+$primary-color: #792CA2;
+$accent-light: #443199; // darker hover state
+$accent-hot: #C13383; // buttons/highlights
+$accent-pop: #E05454; // call-to-action
+$background-color: #faf5ff;
+
+body {
+    height: 100vh;
+    background: $background-color;
+    color: #333;
+}
+
+a {
+    color: $primary-color;
+
+    &:hover {
+        color: $accent-hot;
+    }
+}
+
+button,
+.cta {
+    background: $accent-hot;
+    color: white;
+}
+
+.highlight {
+    color: $accent-pop;
+}
+.high-score {
+    color: $accent-hot;
+}
+.low-score {
+    color: $accent-pop;
+}

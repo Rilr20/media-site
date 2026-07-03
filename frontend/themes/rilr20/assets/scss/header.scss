@@ -1,0 +1,30 @@
+@use './variables';
+.site-header {
+    width: 80vw;
+    margin: auto;
+
+}
+
+.site-nav {
+    ul {
+        // display: flex;
+        // flex-direction: row;
+        // list-style: none;
+        // justify-content: center;
+        display: grid;
+        grid-template-columns: 0.25fr 1fr 0.25fr 1fr 0.25fr 1fr 0.25fr 1fr 0.25fr;
+        grid-template-rows: 1fr 0.5fr 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        .div-1 { grid-area: 2 / 2 / 3 / 3;}
+        .div-2 { grid-area: 2 / 4 / 3 / 5;}
+        .div-3 { grid-area: 2 / 6 / 3 / 7;}
+        .div-4 { grid-area: 2 / 8 / 3 / 9;} 
+        div {
+            width: 100%;
+            text-align: center;
+        }
+    }
+}
+
+

@@ -1,0 +1,18 @@
+{{ define "main" }}
+
+<article class="issue">
+
+    <header class="issue-header">
+        <h1>{{ .Title }}</h1>
+        <div class="meta">
+            {{ .Date | time.Format ":date_medium" }}
+        </div>
+    </header>
+
+    <section class="issue-content">
+        {{ .Content }}
+    </section>
+
+</article>
+
+{{ end }}

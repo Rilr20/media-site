@@ -1,0 +1,14 @@
+<header class="site-header">
+    <nav class="site-nav">
+        <a class="logo" href="{{.Site.BaseURL}}"></a>
+        <ul>
+            {{ $counter := 0 }}
+            {{ range .Site.Menus.main }}
+                {{$counter = add $counter 1}}
+                <div class="div-{{$counter}}">
+                    <a href="{{ .URL }}">{{.Name}}</a>
+                </div>
+            {{ end }}
+        </ul>
+    </nav>
+</header>
