@@ -16,23 +16,6 @@ export function drawMediaType(state, ui) {
     render(state, ui, drawCycleSelect, mediatypes)
 }
 
-export function drawTitle(state, ui) {
-    ui.onSelect = () => {
-        state.title = ui.text
-        resetAndIncrement()
-    }
-    drawTextInput(state, ui, "Title", false)
-}
-
-export function drawCreator(state, ui) {
-    ui.onSelect = () => {
-        state.creator = ui.text
-        resetAndIncrement()
-    }
-    const creatorText = CreatorEnum[state.media_type]
-    drawTextInput(state, ui, creatorText, false)
-}
-
 export function drawPublisher(state, ui) {
     ui.onSelect = () => {
         state.publisher = ui.text
@@ -79,14 +62,6 @@ export function drawOrigYear(state, ui) {
         }
     }
     drawTextInput(state, ui, "Original Release Year")
-}
-
-export function drawReviewText(state, ui) {
-    ui.onSelect = () => {
-        state.review_text = ui.text
-        resetAndIncrement()
-    }
-    drawTextInput(state, ui, "Review Text", false)
 }
 
 export function drawSource(state, ui) {
@@ -207,4 +182,12 @@ export function drawReviewYearQuarter(state, ui) {
 
 
     drawTextInput(state, ui, "Review year and quarter (YYYY, Q)", false)
+}
+
+export function drawSimpleTextField(state, ui, fielddname, label, options) {
+    ui.onSelect = () => {
+        state[fielddname] = ui.text
+        resetAndIncrement()
+    }
+    drawTextInput(state, ui, label, options.nullable)
 }
