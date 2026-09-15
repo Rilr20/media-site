@@ -83,7 +83,18 @@ export const gamegenres = {
     3: "Adventure",
     4: "Arcade"
 }
-
+export const CreatorEnum = {
+    "game": "Developer",
+    "literature": "Author",
+    "music": "Artist/Band",
+    "film": "Director"
+}
+export const PublisherEnum = {
+    "game": "Publisher",
+    "literature": "Publisher",
+    "music": "Record Label",
+    "film": "Distributor"
+}
 
 export const colours = [
     { text: "=10", colour: "\x1b[38;5;46m" },
