@@ -1,33 +1,117 @@
-<script>
-    let { obj } = $props();
+<script lang="ts">
+    type Review = {
+        creator: string;
+        publisher?: string | null;
+        title: string;
+        edition?: string | null;
+
+        year?: number | null;
+        orig_year?: number | null;
+
+        review_text: string;
+
+        base_score: number;
+        tier?: string | null;
+
+        standout?: number | boolean;
+        inconsistent?: number | boolean;
+        divisive?: number | boolean;
+
+        source_name: string;
+        genre_name?: string | null;
+        sub_genre_name?: string | null;
+
+        indie_game: number | boolean;
+
+        [key: string]: unknown;
+    };
+
+    let { review }: { review: Review } = $props();
+
+    const isIndie = review.indie_game === true || review.indie_game === 1;
+
+    const isGame = Boolean(review.sub_genre_name);
+
+    let displayCreator = review.creator;
+    let displayPublisher = review.publisher;
+
+    if (isGame && !displayPublisher && displayCreator?.includes('/')) {
+        const cleaned = displayCreator.replace(/\s*\[Indie\]\s*$/i, '');
+        const [dev, pub] = cleaned.split('/').map((s) => s.trim());
+        displayCreator = dev;
+        displayPublisher = pub;
+    }
+
+    const secondaryInfo = isGame
+        ? review.source_name?.toUpperCase()
+        : displayPublisher;
+
+    const score = review.base_score;
+
+    const scoreClass =
+        score >= 8
+            ? 'score high-score'
+            : score <= 4
+                ? 'score low-score'
+                : 'score';
+
+    const scoreSuffix = review.standout
+        ? '*'
+        : review.inconsistent
+            ? '~'
+            : review.divisive
+                ? '?'
+                : '';
+
+    const genre = isGame && review.sub_genre_name
+        ? `${review.genre_name}-${review.sub_genre_name}`
+        : review.genre_name;
 </script>
 
-<article class="review">
+<div class="entry">
+    <span class="media-creator">
+        <strong>{displayCreator}</strong>{#if isIndie}
+            <span class="indie-tag">
+                <strong>[Indie]</strong>
+            </span>
+        {/if}<strong>:</strong>
+    </span>
 
-    <header>
-        <strong>{obj.creator} / {obj.publisher}</strong>
-        <em>{obj.title}</em>
+    <span class="media-title">
+        <em>{review.title}</em>
 
-        <span>
-            ({obj.year}{#if obj.orig_year} [{obj.orig_year}]{/if})
-        </span>
-    </header>
-
-    <p>{obj.review_text}</p>
-
-    <footer>
-        <strong>
-            {obj.base_score}
-            {#if obj.standout}*{/if}
-            {#if obj.inconsistent}~{/if}
-            {#if obj.divisive}?{/if}
-        </strong>
-
-        <span>[{obj.source_id}]</span>
-
-        {#if obj.genre_id}
-            <span>Genre: {obj.genre_id}</span>
+        {#if review.edition}
+            [{review.edition}]
         {/if}
-    </footer>
+    </span>
 
-</article>
+    {#if review.year || review.orig_year || secondaryInfo}
+        <span class="media-meta">
+            ({#if review.orig_year}
+                {review.orig_year} [{review.year}]
+            {:else}
+                {review.year}
+            {/if}{#if secondaryInfo}
+                , {secondaryInfo}
+            {/if})
+        </span>
+    {/if}:
+
+    <span class="body">
+        {review.review_text}
+
+        <span class={scoreClass}>
+            <strong>{review.tier ?? ''}{score}{scoreSuffix}</strong>
+        </span>
+
+        <span class="meta">
+            <strong>[{review.source_name}]</strong>
+        </span>
+
+        {#if genre}
+            <span class="genre">
+                <code>Genre: {genre}</code>
+            </span>
+        {/if}
+    </span>
+</div>
