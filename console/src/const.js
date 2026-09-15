@@ -86,41 +86,41 @@ export const gamegenres = {
 
 
 export const colours = [
-    { text: "10", colour: "\x1b[38;5;46m" },
+    { text: "=10", colour: "\x1b[38;5;46m" },
     { text: "-10", colour: "\x1b[38;5;47m" },
 
     { text: "+9", colour: "\x1b[38;5;48m" },
-    { text: "9", colour: "\x1b[38;5;82m" },
+    { text: "=9", colour: "\x1b[38;5;82m" },
     { text: "-9", colour: "\x1b[38;5;83m" },
 
     { text: "+8", colour: "\x1b[38;5;84m" },
-    { text: "8", colour: "\x1b[38;5;85m" },
+    { text: "=8", colour: "\x1b[38;5;85m" },
     { text: "-8", colour: "\x1b[38;5;118m" },
 
     { text: "+7", colour: "\x1b[38;5;119m" },
-    { text: "7", colour: "\x1b[38;5;120m" },
+    { text: "=7", colour: "\x1b[38;5;120m" },
     { text: "-7", colour: "\x1b[38;5;121m" },
 
     { text: "+6", colour: "\x1b[38;5;190m" },
-    { text: "6", colour: "\x1b[38;5;191m" },
+    { text: "=6", colour: "\x1b[38;5;191m" },
     { text: "-6", colour: "\x1b[38;5;192m" },
 
     { text: "+5", colour: "\x1b[38;5;193m" },
-    { text: "5", colour: "\x1b[38;5;227m" },
+    { text: "=5", colour: "\x1b[38;5;227m" },
     { text: "-5", colour: "\x1b[38;5;228m" },
 
     { text: "+4", colour: "\x1b[38;5;229m" },
-    { text: "4", colour: "\x1b[38;5;214m" },
+    { text: "=4", colour: "\x1b[38;5;214m" },
     { text: "-4", colour: "\x1b[38;5;215m" },
 
     { text: "+3", colour: "\x1b[38;5;216m" },
-    { text: "3", colour: "\x1b[38;5;196m" },
+    { text: "=3", colour: "\x1b[38;5;196m" },
     { text: "-3", colour: "\x1b[38;5;197m" },
 
     { text: "+2", colour: "\x1b[38;5;198m" },
-    { text: "2", colour: "\x1b[38;5;199m" },
+    { text: "=2", colour: "\x1b[38;5;199m" },
     { text: "-2", colour: "\x1b[38;5;198m" },
 
     { text: "+1", colour: "\x1b[38;5;197m" },
-    { text: "1", colour: "\x1b[38;5;196m" }
+    { text: "=1", colour: "\x1b[38;5;196m" }
 ]

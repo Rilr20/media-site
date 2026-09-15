@@ -9,7 +9,18 @@ function resetAndIncrement(input = "") {
     ui.field = input === "" ? ui.field + 1 : input
     ui.onSelect = undefined
 }
-
+CreatorEnum = {
+    "game": "Developer",
+    "literature": "Author",
+    "music": "Artist/Band",
+    "film": "Director"
+}
+PublisherEnum= {
+    "game": "Publisher",
+    "literature": "Publisher",
+    "music": "Record Label",
+    "film": "Distributor"
+}
 export function draw(state, ui) {
 
     switch (ui.field) {
@@ -37,7 +48,8 @@ export function draw(state, ui) {
                 state.creator = ui.text
                 resetAndIncrement()
             }
-            drawTextInput(state, ui, "Creator", false)
+            const creatorText = CreatorEnum[state.media_type]
+            drawTextInput(state, ui, creatorText, false)
             break
 
         case 4: // text publisher
@@ -51,7 +63,8 @@ export function draw(state, ui) {
                     resetAndIncrement()
                 }
             }
-            drawTextInput(state, ui, "Publisher", true)
+            const publisherText = PublisherEnum[state.media_type]
+            drawTextInput(state, ui, publisherText, true)
             break
         case 5: // number year
             ui.onSelect = () => {
@@ -106,13 +119,11 @@ export function draw(state, ui) {
             render(state, ui, drawRadioButton, obj, "singleselect")
             break
         case 10: //base score
-            //tier
-            //TODO: NOT NULL on score
             ui.cursor = colours.length - 1
             ui.onSelect = () => {
-                let split = colours[ui.cursor].text.split("")
-                state.base_score = split.length == 1 ? split[0] : split[1]
-                state.tier = split.length == 2 ? split[1] : ""
+                let match = colours[ui.cursor].text.match(/^([+=-])(\d+)$/)
+                state.tier = match[1]
+                state.base_score = match[2]
                 resetAndIncrement()
             }
             render(state, ui, drawCycleSelectColour, colours, "score")
