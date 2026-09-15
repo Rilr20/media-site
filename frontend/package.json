@@ -9,7 +9,11 @@
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"scss": "sass static/scss/main.scss static/css/main.css",
+		"scss:min": "sass --style=compressed static/scss/main.scss static/css/main.min.css",
+		"scss:watch": "sass --watch static/scss/main.scss:static/css/main.css",
+		"scss:watch-min": "sass --watch --style=compressed static/scss/main.scss:static/css/main.min.css"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-node": "^5.5.7",
