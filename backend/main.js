@@ -17,21 +17,51 @@ fastify.register(fastifyMysql, {
     promise: true
 });
 
-fastify.get('/', function (request, reply) {
-    reply.send({ hello: 'world' })
-})
 
 fastify.get("/v1/review", async function (request, reply) {
     const connection = await fastify.mysql.getConnection()
-    const [rows] = await connection.query('SELECT * FROM reviews WHERE (review_year, review_quarter) = (SELECT review_year, review_quarter FROM reviews ORDER BY review_year DESC, review_quarter DESC LIMIT 1)')
+    const [rows] = await connection.query(`
+        SELECT
+            reviews.*,
+            mt.mediatype AS media_type_name,
+            g.genre AS genre_name,
+            sg.genre AS sub_genre_name,
+            p.platform AS source_name
+        FROM reviews
+        INNER JOIN mediatypes AS mt ON reviews.media_type_id = mt.id
+        INNER JOIN genres AS g ON reviews.genre_id = g.id
+        LEFT JOIN genres AS sg ON reviews.sub_genre_id = sg.id
+        INNER JOIN platforms AS p ON reviews.source_id = p.id
+        WHERE (reviews.review_year, reviews.review_quarter) = (
+            SELECT review_year, review_quarter
+            FROM reviews
+            ORDER BY review_year DESC, review_quarter DESC
+            LIMIT 1
+        ) ORDER BY reviews.media_type_id, reviews.created_at DESC`)
     connection.release();
+
     return { success: true, data: rows };
 })
 
 fastify.get("/v1/review/:year/:quarter", async function (request, reply) {
+    const { year, quarter } = request.params
     const connection = await fastify.mysql.getConnection()
-    const [rows] = await connection.query('SELECT * FROM reviews WHERE review_year = ? AND review_year = ?', [])
+    const [rows] = await connection.query(`
+        SELECT
+            reviews.*,
+            mt.mediatype AS media_type_name,
+            g.genre AS genre_name,
+            sg.genre AS sub_genre_name,
+            p.platform AS source_name
+        FROM reviews
+        INNER JOIN mediatypes AS mt ON reviews.media_type_id = mt.id
+        INNER JOIN genres AS g ON reviews.genre_id = g.id
+        LEFT JOIN genres AS sg ON reviews.sub_genre_id = sg.id
+        INNER JOIN platforms AS p ON reviews.source_id = p.id
+        WHERE reviews.review_year = ? AND reviews.review_quarter = ?
+        ORDER BY reviews.media_type_id, reviews.created_at DESC`, [year, quarter])
     connection.release();
+
     return { success: true, data: rows };
 })
 
@@ -85,7 +115,7 @@ fastify.post("/v1/get_genre", async function (request, reply) {
     platform = request.query.platform
 
     const row = await connection.query('SELECT * FROM platforms WHERE platform = ?')
-
+    return reply.send(row);
 })
 
 fastify.post("/v1/get_platform", async function (request, reply) {
@@ -94,6 +124,12 @@ fastify.post("/v1/get_platform", async function (request, reply) {
     const [row] = await connection.query('SELECT * FROM platforms WHERE platform = ?', [platform]);
 
     return reply.send(row);
+});
+
+fastify.get("/v1/get_all_dates", async function(request, reply) {
+    const connection = await fastify.mysql.getConnection()
+    const [rows] = await connection.query('SELECT DISTINCT review_year, review_quarter FROM reviews ORDER BY review_year, review_quarter ASC');
+    return reply.send(rows);
 });
 
 // Run the server!
