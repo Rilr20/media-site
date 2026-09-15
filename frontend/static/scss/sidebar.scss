@@ -1,0 +1,39 @@
+@use './variables';
+.site-main {
+    .sidebar {
+        width: 16%;
+        margin: 1rem 2% 0 2%;
+
+        .sidebar-upper-div {
+            height: 41px;
+        }
+    }
+    .inner-sidebar {
+        padding: 1rem;
+        h3 {
+            text-align: center;
+        }
+        li {
+            list-style: none;
+        }
+        li a:visited,
+        li a {
+            color: #333;
+        }
+        .quarters {
+            padding-left: 4rem;
+            padding-right: 4rem;
+        }
+        .year {
+            text-align: left;
+            padding-left: 3rem;
+        }
+        .divider {
+            background-color: variables.$primary-colour;
+            height: 2px;
+            border-radius: 1rem;
+            width: 75%;
+            margin: 4px auto 1rem auto;
+        }
+    }
+}

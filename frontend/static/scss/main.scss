@@ -1,0 +1,45 @@
+@use './variables';
+@use './fonts.scss';
+@use './header';
+@use './footer';
+@use './post';
+@use './sidebar';
+
+* {
+    padding: 0;
+    margin: 0;
+    // background-color: orange;
+}
+
+$primary-color-text: #333;
+
+body {
+    color: $primary-color-text;
+}
+
+.site-main {
+    display: flex;
+
+    .content {
+        width: 60%;
+        // width: 80vw;
+        margin: 1rem 0 auto 1rem;
+
+        p {
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+        }
+
+        // background-color: orange;
+    }
+}
+  .reviews {
+      width: 50%;
+      margin: auto;
+  }
+
+  .title {
+      margin-top: 1.5em;
+      margin-bottom: 1em;
+      text-align: center;
+  }

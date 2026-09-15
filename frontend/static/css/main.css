@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+body {
+  height: 100vh;
+  background: #faf5ff;
+  color: #333;
+}
+
+a {
+  color: #792CA2;
+}
+a:hover {
+  color: #C13383;
+}
+
+button,
+.cta {
+  background: #C13383;
+  color: white;
+}
+
+.highlight {
+  color: #E05454;
+}
+
+.high-score {
+  color: #C13383;
+}
+
+.low-score {
+  color: #E05454;
+}
+
+body {
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+p {
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+.media-creator {
+  font-size: 18px;
+}
+
+.media-title {
+  font-family: "EB Garamond", serif;
+  font-size: 20px;
+}
+
+h2 {
+  margin-bottom: 0.25em;
+}
+
+.score,
+.meta,
+.genre {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.meta,
+.genre {
+  font-size: 14px;
+}
+
+.site-header {
+  width: 80vw;
+  margin: auto;
+}
+
+.site-nav ul {
+  display: grid;
+  grid-template-columns: 0.25fr 1fr 0.25fr 1fr 0.25fr 1fr 0.25fr 1fr 0.25fr;
+  grid-template-rows: 1fr 0.5fr 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+.site-nav ul .div-1 {
+  grid-area: 2/2/3/3;
+}
+.site-nav ul .div-2 {
+  grid-area: 2/4/3/5;
+}
+.site-nav ul .div-3 {
+  grid-area: 2/6/3/7;
+}
+.site-nav ul .div-4 {
+  grid-area: 2/8/3/9;
+}
+.site-nav ul div {
+  width: 100%;
+  text-align: center;
+}
+
+.site-main .sidebar {
+  width: 16%;
+  margin: 1rem 2% 0 2%;
+}
+.site-main .sidebar .sidebar-upper-div {
+  height: 41px;
+}
+.site-main .inner-sidebar {
+  padding: 1rem;
+}
+.site-main .inner-sidebar h3 {
+  text-align: center;
+}
+.site-main .inner-sidebar li {
+  list-style: none;
+}
+.site-main .inner-sidebar li a:visited,
+.site-main .inner-sidebar li a {
+  color: #333;
+}
+.site-main .inner-sidebar .quarters {
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+.site-main .inner-sidebar .year {
+  text-align: left;
+  padding-left: 3rem;
+}
+.site-main .inner-sidebar .divider {
+  background-color: #792CA2;
+  height: 2px;
+  border-radius: 1rem;
+  width: 75%;
+  margin: 4px auto 1rem auto;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  color: #333;
+}
+
+.site-main {
+  display: flex;
+}
+.site-main .content {
+  width: 60%;
+  margin: 1rem 0 auto 1rem;
+}
+.site-main .content p {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.reviews {
+  width: 50%;
+  margin: auto;
+}
+
+.title {
+  margin-top: 1.5em;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+/*# sourceMappingURL=main.css.map */
